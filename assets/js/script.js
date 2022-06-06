@@ -39,12 +39,20 @@ function createBandRow(bandName, imageURL, bandURL){
 
 function createEventRow(parentRow, eventDateTime, eventCity, eventVenue, ticketURL){
     //create row element 
+
     //add column for eventDateTime
+
     //call getWeather, passing eventCity, eventDateTime, and the new row element
+    var containerElement;
+    getWeather(eventCity,eventDateTime,containerElement)
+
     //add column for city
+
     //create column for venue
+
     //if ticketURL!=""
         //create button for purchasing tickets
+        
     //add row element to parentRow
 }
 
@@ -67,13 +75,13 @@ function getWeather(city,dateEvent,containerElement){
                     var item = data[0]
                     // make the next call to get the weather
                     // call getWeatherByGCS, passing city name, latitude, and longitude
-                     getWeatherByGCS(dateEvent, item.lat, item.lon);
+                     getWeatherByGCS(containerElement, dateEvent, item.lat, item.lon);
                 }
             });
     }
 }
 
-function getWeatherByGCS(dateWeather, lattitude, longitude) {
+function getWeatherByGCS(containerElement, dateWeather, lattitude, longitude) {
     var dateNow= new Date();
     var intDateDiff= Math.floor((dateNow.getTime()-dateWeather.getTime())/(24*3600*1000))*-1-1
     
@@ -88,10 +96,10 @@ function getWeatherByGCS(dateWeather, lattitude, longitude) {
         })
         .then(function (data) {
             var forecast = data.daily[intDateDiff];
+            //TODO: 
             console.log(intDateDiff, forecast.temp.max, forecast.wind_speed, forecast.humidity, forecast.weather[0].main, forecast.weather[0].icon)
         })
 }
 
 var eventDateTime=new Date("6/10/2022");
-
 getWeather("Charlotte",eventDateTime,"");
