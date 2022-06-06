@@ -3,11 +3,14 @@ var apiOpenWeather = "26430011a9e304ff62d863402ab09fcc";
 
 function populateBands(){
     //clear innerHTML of #content
-
+    $('#content').remove();
     //read bands from localStorage
-
+    var bands = localStorage.getItem('bands');
     //if there are no bands
         //add row to add first band
+    if (bands = '') {
+        
+    }
     //else
         //loop through them, 
             //create header row
