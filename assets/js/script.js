@@ -15,16 +15,47 @@ function populateBands(){
     //else
         //loop through them, 
             //create header row
+    var delimBandString=localStorage.getItem("Bands");
+    if(delimBandString!=""){
+        //turn the delimited string into a string array
+        var bands=delimBandString.split("***")
+        //loop through the string array
+        for(i=0;i<bands.length;i++){
+            //create band header row
             //make API call to get info
             //if API call is successful
                 //fill fields in band header
                 //make API call to event info
                 //if API call returns event records
                     //create detail rows  
+        }
+    }
 }
 
 function saveBand(bandName){
-    //trim bandName
+    bandName=bandName.trim();
+
+    var delimBandString=localStorage.getItem("Bands");
+    if(delimBandString!=""){
+        //turn the delimited string into a string array
+        var bands=delimBandString.split("***")
+        //loop through the string array
+        var match=false;
+        for(i=0;i<bands.length;i++){
+            if(bands[i].toUpperCase()==bandName.toUpperCase()){
+                match=true;
+            }
+            if(!match){
+                if(delimBandString==""){
+                    bands=[bandName]
+                } else {
+                    bands=bands+"***"+bandName
+                }
+            }
+        }
+    }
+
+
     //if bandName != ""
         //check for duplicate in localStorage
         //if no duplicate found
