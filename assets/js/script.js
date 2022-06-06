@@ -1,5 +1,5 @@
-var apiBIT = "something";
-var apiOpenWeather = "somethingelse";
+var apiBIT = "codingbootcamp";
+var apiOpenWeather = "26430011a9e304ff62d863402ab09fcc";
 
 function populateBands(){
     //clear innerHTML of #content
