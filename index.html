@@ -14,7 +14,7 @@
         <h1>Band Tracker</h1>
     </header>
 
-    <button id="bandBtn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">add bands</button>
+
 
     <!--Added modal from Bootstrap-->
     <!-- Vertically centered modal -->
@@ -35,24 +35,26 @@
           </div>
         </div>
       </div>
-  
-  <!-- Vertically centered scrollable modal -->
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    ...
-  </div>
+    <!-- <button id="bandBtn">add bands</button> -->
+
+    <!--Added modal from Bootstrap-->
+    <!-- Vertically centered modal -->
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bandBtn">
+    Launch demo modal
+    </button>
 
     <section id="content">
-    <!-- artist row -->
-    <section class="row">
-        <section class="col-12 col-md-3 p-2 artist row">
-            
-        </section>
-    </section>
-    <!-- detail row -->
-        <!-- date/time column -->
-        <!-- city column -->
-        <!-- venue column -->
-    </section>
+        <section class="row">
+            <section class="col-12 col-md-3 p-2 artist row">
+          </section>
+          </section>
+        <div class="row">
+              <div class="col">Date & Time</div>
+              <div class="col">City</div>
+              <div class="col">Venue</div>
+              <div class="col">Tickets</div>
+          </div> 
 
     <!-- footer block, equivalent of jumbotron -->
     <footer class="m-1 p-2 bg-primary text-white rounded">
