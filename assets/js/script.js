@@ -1,10 +1,20 @@
 var apiBIT = "codingbootcamp";
 var apiOpenWeather = "26430011a9e304ff62d863402ab09fcc";
+var bandBtn = document.querySelector('#bandBtn');
 
 function populateBands(){
     //clear innerHTML of #content
-
+    $('#content').remove();
     //read bands from localStorage
+    var bands = localStorage.getItem('bands');
+    //if there are no bands
+        //add row to add first band
+    if (bands = '') {
+
+    }
+    //else
+        //loop through them, 
+            //create header row
     var delimBandString=localStorage.getItem("Bands");
     if(delimBandString!=""){
         //turn the delimited string into a string array
@@ -126,5 +136,8 @@ function getWeatherByGCS(containerElement, dateWeather, lattitude, longitude) {
         })
 }
 
+
 var eventDateTime=new Date("6/10/2022");
 getWeather("Charlotte",eventDateTime,"");
+
+// bandBtn.addEventListener('click', )
