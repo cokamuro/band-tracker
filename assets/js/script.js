@@ -131,3 +131,4 @@ function getWeatherByGCS(containerElement, dateWeather, lattitude, longitude) {
 //getWeather("Charlotte",eventDateTime,"");
 saveBand("Slipknot");
 
+bandBtn.addEventListener('click', $("#bandBtn").modal());
