@@ -1,9 +1,17 @@
 var apiBIT = "codingbootcamp";
 var apiOpenWeather = "26430011a9e304ff62d863402ab09fcc";
 var bandBtn = document.querySelector('#bandBtn');
+var f=0;
+
+var retBandObj = {
+    picture: "",
+    eventCount: 0,
+    url: ""
+};
 
 function populateBands() {
     //clear innerHTML of #content
+    $(".dynamically-populated").remove();
 
     //read bands from localStorage
     var delimBandString = localStorage.getItem("Bands");
@@ -12,11 +20,13 @@ function populateBands() {
         var bands = delimBandString.split("***")
         //loop through the string array
         for (i = 0; i < bands.length; i++) {
-            //create band header row
-            createBandRow(bands[i],"","",i);
-            
             //make API call to get info
+            getBandInfo(bands[i]);
+            console.log(f++,"populateBands",bands[i],retBandObj.eventCount)
             //if API call is successful
+
+            
+
             //fill fields in band header
             //make API call to event info
             //if API call returns event records
@@ -24,6 +34,38 @@ function populateBands() {
         }
     }
 
+}
+
+function getBandInfo(bandName,index) {
+    retBandObj.picture=""
+    retBandObj.eventCount=""
+    retBandObj.url=""
+
+    //need to URL encode the band name
+
+    //https://rest.bandsintown.com/artists/{{artist_name}}/?app_id=yOUrSuP3r3ven7aPp-id
+    var params = "app_id=" + apiBIT
+    fetch("https://rest.bandsintown.com/artists/" + bandName + "/?" + params)
+        .then(function (response) {
+
+            return (response.text());
+        })
+        .then(function (data) {
+
+
+            if (!data.includes("Not Found")) {
+                var retJSON = JSON.parse(data)
+
+                retBandObj.picture = retJSON.thumb_url
+                retBandObj.eventCount = retJSON.upcoming_event_count
+                console.log(f++,bandName,"upcoming event count",retJSON.upcoming_event_count)
+                retBandObj.url = retJSON.url
+                //links?
+
+                //create band header row
+                createBandRow(bandName, index);
+            }
+        });
 }
 
 function saveBand(bandName) {
@@ -36,7 +78,7 @@ function saveBand(bandName) {
     if (delimBandString != "" && delimBandString != null) {
         //turn the delimited string into a string array
 
-        if(delimBandString.includes("***")){
+        if (delimBandString.includes("***")) {
             var bands = delimBandString.split("***")
             //loop through the string array
             var match = false;
@@ -52,11 +94,11 @@ function saveBand(bandName) {
                 populateBands();
             }
         } else {
-            if(delimBandString.toUpperCase()!=bandName.toUpperCase()){
-                localStorage.setItem("Bands", delimBandString+"***"+bandName);
+            if (delimBandString.toUpperCase() != bandName.toUpperCase()) {
+                localStorage.setItem("Bands", delimBandString + "***" + bandName);
             }
         }
-        
+
     } else {
         //if no bands were in localstorage, add this one
         localStorage.setItem("Bands", bandName);
@@ -64,50 +106,61 @@ function saveBand(bandName) {
     }
 }
 
-function createBandRow(bandName, imageURL, bandURL, index) {
+function createBandRow(bandName, index) {
+console.log("cbr",index,retBandObj)
+
     //grab proto-artist-row
-    var protoArtistRow=$(".proto-artist-row")
-    var protoHeaderRow=$(".proto-header-row")
-    var protoConcertRow=$(".proto-concert-row")
+    var protoArtistRow = $(".proto-artist-row")
+    var protoHeaderRow = $(".proto-header-row")
+    var protoConcertRow = $(".proto-concert-row")
 
     //clone the artist row
-    var newArtistRow=protoArtistRow.clone();
+    var newArtistRow = protoArtistRow.clone();
     //newArtistRow.attr("id","artist-head-"+index);
     newArtistRow.removeClass("proto-artist-row")
     newArtistRow.removeClass("visually-hidden")
+    newArtistRow.addClass("dynamically-populated")
     newArtistRow.children().eq(0).children().eq(1).text(bandName);
     $("#content").append(newArtistRow);
+    alert(retBandObj.eventCount)
+    if(retBandObj.eventCount!=0){
+        //clone the header row
+        var newHeaderRow = protoHeaderRow.clone();
+        newHeaderRow.removeClass("proto-header-row")
+        newHeaderRow.removeClass("visually-hidden")
+        newHeaderRow.addClass("dynamically-populated")
+        $("#content").append(newHeaderRow);
 
-    //clone the header row
-    var newHeaderRow=protoHeaderRow.clone();
-    newHeaderRow.removeClass("proto-header-row")
-    newHeaderRow.removeClass("visually-hidden")
-    $("#content").append(newHeaderRow);
+        //get concerts
+        //loop through the concerts
+        //clone the concert rows
+        //hardcoded for now
 
-    //get concerts
-    //loop through the concerts
-    //clone the concert rows
-    //hardcoded for now
-    var newConcertRow=protoConcertRow.clone();
-    newConcertRow.removeClass("proto-concert-row")
-    newConcertRow.removeClass("visually-hidden")
-    newConcertRow.children().eq(0).text("6/10/1980")
-    newConcertRow.children().eq(1).text("Charlotte")
-    newConcertRow.children().eq(2).text("Filmore")
-    $("#content").append(newConcertRow);
-    var newConcertRow=protoConcertRow.clone();
-    newConcertRow.removeClass("proto-concert-row")
-    newConcertRow.removeClass("visually-hidden")
-    newConcertRow.children().eq(0).text("6/12/1980")
-    newConcertRow.children().eq(1).text("Raleigh")
-    newConcertRow.children().eq(2).text("Red Hat Amphitheater")
-    $("#content").append(newConcertRow);
+            var newConcertRow = protoConcertRow.clone();
+        newConcertRow.removeClass("proto-concert-row")
+        newConcertRow.removeClass("visually-hidden")
+        newConcertRow.addClass("dynamically-populated")
+        newConcertRow.children().eq(0).text("6/10/1980")
+        newConcertRow.children().eq(1).text("Charlotte")
+        newConcertRow.children().eq(2).text("Filmore")
+        $("#content").append(newConcertRow);
+        var newConcertRow = protoConcertRow.clone();
+        newConcertRow.removeClass("proto-concert-row")
+        newConcertRow.removeClass("visually-hidden")
+        newConcertRow.addClass("dynamically-populated")
+        newConcertRow.children().eq(0).text("6/12/1980")
+        newConcertRow.children().eq(1).text("Raleigh")
+        newConcertRow.children().eq(2).text("Red Hat Amphitheater")
+        $("#content").append(newConcertRow);
+    }
+
+    
 
 
     //add an image element, displaying imageURL (remember alt text), and band name as an a href to the bandURL
     //add the element to content
 
-    
+
 }
 
 function createEventRow(parentRow, eventDateTime, eventCity, eventVenue, ticketURL) {
@@ -183,7 +236,7 @@ $(".proto-concert-row").addClass("visually-hidden")
 //var eventDateTime=new Date("6/10/2022");
 //getWeather("Charlotte",eventDateTime,"");
 saveBand("Slipknot");
-saveBand("Spritbox");
+saveBand("Spiritbox");
 saveBand("Grimes");
 saveBand("Speedy Ortiz");
 populateBands();
