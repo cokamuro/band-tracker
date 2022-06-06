@@ -1,5 +1,6 @@
 var apiBIT = "codingbootcamp";
 var apiOpenWeather = "26430011a9e304ff62d863402ab09fcc";
+var bandBtn = document.querySelector('#bandBtn');
 
 function populateBands(){
     //clear innerHTML of #content
@@ -9,7 +10,7 @@ function populateBands(){
     //if there are no bands
         //add row to add first band
     if (bands = '') {
-        
+
     }
     //else
         //loop through them, 
@@ -104,5 +105,8 @@ function getWeatherByGCS(containerElement, dateWeather, lattitude, longitude) {
         })
 }
 
+
 var eventDateTime=new Date("6/10/2022");
 getWeather("Charlotte",eventDateTime,"");
+
+// bandBtn.addEventListener('click', )
