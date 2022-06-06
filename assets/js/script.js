@@ -130,5 +130,3 @@ function getWeatherByGCS(containerElement, dateWeather, lattitude, longitude) {
 //var eventDateTime=new Date("6/10/2022");
 //getWeather("Charlotte",eventDateTime,"");
 saveBand("Slipknot");
-
-bandBtn.addEventListener('click', $("#bandBtn").modal());
