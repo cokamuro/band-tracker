@@ -13,6 +13,8 @@ function populateBands() {
         //loop through the string array
         for (i = 0; i < bands.length; i++) {
             //create band header row
+            createBandRow(bands[i],"","",i);
+            
             //make API call to get info
             //if API call is successful
             //fill fields in band header
@@ -21,6 +23,7 @@ function populateBands() {
             //create detail rows  
         }
     }
+
 }
 
 function saveBand(bandName) {
@@ -33,20 +36,27 @@ function saveBand(bandName) {
     if (delimBandString != "" && delimBandString != null) {
         //turn the delimited string into a string array
 
-        var bands = delimBandString.split("***")
-        //loop through the string array
-        var match = false;
-        for (i = 0; i < bands.length; i++) {
-            if (bands[i].toUpperCase() == bandName.toUpperCase()) {
-                match = true;
+        if(delimBandString.includes("***")){
+            var bands = delimBandString.split("***")
+            //loop through the string array
+            var match = false;
+            for (i = 0; i < bands.length; i++) {
+                if (bands[i].toUpperCase() == bandName.toUpperCase()) {
+                    match = true;
+                }
+            }
+            if (!match) {
+                delimBandString = delimBandString + "***" + bandName
+                localStorage.setItem("Bands", delimBandString);
+                //there was a non-duplicate band, so refresh the band list
+                populateBands();
+            }
+        } else {
+            if(delimBandString.toUpperCase()!=bandName.toUpperCase()){
+                localStorage.setItem("Bands", delimBandString+"***"+bandName);
             }
         }
-        if (!match) {
-            bands = bands + "***" + bandName
-            localStorage.setItem("Bands", bands);
-            //there was a non-duplicate band, so refresh the band list
-            populateBands();
-        }
+        
     } else {
         //if no bands were in localstorage, add this one
         localStorage.setItem("Bands", bandName);
@@ -54,13 +64,50 @@ function saveBand(bandName) {
     }
 }
 
-function createBandRow(bandName, imageURL, bandURL) {
-    //create full-width row
-    //if bandName==""
-    //append a button element to "Add your first band!"
-    //else 
+function createBandRow(bandName, imageURL, bandURL, index) {
+    //grab proto-artist-row
+    var protoArtistRow=$(".proto-artist-row")
+    var protoHeaderRow=$(".proto-header-row")
+    var protoConcertRow=$(".proto-concert-row")
+
+    //clone the artist row
+    var newArtistRow=protoArtistRow.clone();
+    //newArtistRow.attr("id","artist-head-"+index);
+    newArtistRow.removeClass("proto-artist-row")
+    newArtistRow.removeClass("visually-hidden")
+    newArtistRow.children().eq(0).children().eq(1).text(bandName);
+    $("#content").append(newArtistRow);
+
+    //clone the header row
+    var newHeaderRow=protoHeaderRow.clone();
+    newHeaderRow.removeClass("proto-header-row")
+    newHeaderRow.removeClass("visually-hidden")
+    $("#content").append(newHeaderRow);
+
+    //get concerts
+    //loop through the concerts
+    //clone the concert rows
+    //hardcoded for now
+    var newConcertRow=protoConcertRow.clone();
+    newConcertRow.removeClass("proto-concert-row")
+    newConcertRow.removeClass("visually-hidden")
+    newConcertRow.children().eq(0).text("6/10/1980")
+    newConcertRow.children().eq(1).text("Charlotte")
+    newConcertRow.children().eq(2).text("Filmore")
+    $("#content").append(newConcertRow);
+    var newConcertRow=protoConcertRow.clone();
+    newConcertRow.removeClass("proto-concert-row")
+    newConcertRow.removeClass("visually-hidden")
+    newConcertRow.children().eq(0).text("6/12/1980")
+    newConcertRow.children().eq(1).text("Raleigh")
+    newConcertRow.children().eq(2).text("Red Hat Amphitheater")
+    $("#content").append(newConcertRow);
+
+
     //add an image element, displaying imageURL (remember alt text), and band name as an a href to the bandURL
     //add the element to content
+
+    
 }
 
 function createEventRow(parentRow, eventDateTime, eventCity, eventVenue, ticketURL) {
@@ -127,6 +174,16 @@ function getWeatherByGCS(containerElement, dateWeather, lattitude, longitude) {
         })
 }
 
+
+
+$(".proto-artist-row").addClass("visually-hidden")
+$(".proto-header-row").addClass("visually-hidden")
+$(".proto-concert-row").addClass("visually-hidden")
+
 //var eventDateTime=new Date("6/10/2022");
 //getWeather("Charlotte",eventDateTime,"");
 saveBand("Slipknot");
+saveBand("Spritbox");
+saveBand("Grimes");
+saveBand("Speedy Ortiz");
+populateBands();

@@ -2,6 +2,79 @@
 <html lang="en">
 
 <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <title>Band Tracker</title>
+</head>
+
+<body>
+  <!-- header block, equivalent of jumbotron -->
+  <header class="m-1 p-2 bg-primary text-white rounded">
+    <h1>Band Tracker</h1>
+  </header>
+  <!--Added modal from Bootstrap-->
+  <!-- Vertically centered modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <button id="bandBtn">add bands</button> -->
+  <!--Added modal from Bootstrap-->
+  <!-- Vertically centered modal -->
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bandBtn">
+    Launch demo modal
+  </button>
+
+  <section id="content">
+    <section class="row proto-artist-row">
+      <section class="col-12 p-2 artist">
+        <img scr="">
+        <h1><a href="">ReplacedWithArtistName</a></h1>
+      </section>
+    </section>
+    <div class="row border proto-header-row">
+      <div class="">Date & Time</div>
+      <div class="">City</div>
+      <div class="">Venue</div>
+      <div class="">Tickets</div>
+    </div>
+    <div class="row border proto-concert-row">
+      <div class=""></div>
+      <div class=""></div>
+      <div class=""></div>
+      <div class=""></div>
+    </div>
+  </section>
+
+
+  <!-- footer block, equivalent of jumbotron -->
+  <footer class="m-1 p-2 bg-primary text-white rounded">
+  </footer>
+  <!-- include jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="./assets/js/script.js"></script>
+</body>
+
+
+=======
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -98,5 +171,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         <script src="./assets/js/script.js"></script>
 </body>
+
 
 </html>
