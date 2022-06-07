@@ -1,0 +1,45 @@
+:root{
+    --pink: #d63384; 
+    --red: #dc3545; 
+    --orange: #fd7e14;
+    --yellow: #ffc107; 
+    --cyan: #0dcaf0; 
+    --light: #fff;
+    --dark: #000;
+}
+
+.artist {
+    background-color: var(--dark);
+}
+.row {
+    font-size: 1.5rem;
+    color: var(--red);
+  }
+  
+  .custom-header{
+    background-color: var(--pink);
+    color: var(--dark);
+  }
+  .btn {
+    background-color: var(--pink);
+    color: var(--dark);
+  }
+  .btn:hover {
+    background-color: var(--dark);
+    color: var(--pink);
+  }
+  . .custom-jumbotron {
+    background-color: var(--pink);
+    color: var(--dark);
+  } 
+  .custom-row{
+    background-color: var(--dark);
+    color: var(--pink);
+  }
+  .custom-info {
+      background-color: var(--dark);
+ color: var(--pink);
+  }
+  .custom-footer{
+      background-color: var(--pink);
+  }

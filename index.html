@@ -13,9 +13,9 @@
 
 <body>
     <!-- header block, equivalent of jumbotron -->
-    <header class="m-1 p-2 bg-primary text-white rounded">
+    <header class="m-1 p-2 text-white rounded">
         <div class="row">
-            <div class="col-sm-9">
+            <div class="col-sm-9 custom-header">
                 <h1>Band Tracker</h1>
             </div>
             <div class="col-sm-3">
@@ -50,30 +50,32 @@
     <!-- Button trigger modal -->
 
     <section id="content">
+        <section class="proto-artist-block">
         <section class="row proto-artist-row">
             <section class="col-12 p-2 artist">
                 <img scr="">
                 <h1><a href="">ReplacedWithArtistName</a></h1>
             </section>
+            </section>
         </section>
         <!--set css color variables, can change names-->
-        <div class="row border proto-header-row">
-            <div class="col-2 fw-bold text-light bg-dark">Date & Time</div>
-            <div class="col-2 fw-bold text-light bg-dark">City</div>
-            <div class="col-7 fw-bold text-light bg-dark">Venue</div>
-            <div class="col-1 fw-bold text-light bg-dark">Tickets</div>
+        <div class="row border proto-header-row custom-info">
+            <div class="col-2 fw-bold">Date & Time</div>
+            <div class="col-2 fw-bold">City</div>
+            <div class="col-7 fw-bold">Venue</div>
+            <div class="col-1 fw-bold">Tickets</div>
         </div>
-        <div class="row border proto-concert-row">
-            <div class="col-2 fw-bolder bg-primary"></div>
-            <div class="col-2 fw-bolder bg-info"></div>
-            <div class="col-7 fw-bolder bg-success"></div>
-            <div class="col-1 fw-bolder bg-warning"></div>
+        <div class="row border proto-concert-row custom-row">
+            <div class="col-2 fw-bolder"></div>
+            <div class="col-2 fw-bolder"></div>
+            <div class="col-7 fw-bolder"></div>
+            <div class="col-1 fw-bolder"></div>
         </div>
     </section>
     </section>
 
     <!-- footer block, equivalent of jumbotron -->
-    <footer class="m-1 p-2 bg-primary text-white rounded">
+    <footer class="m-1 p-2 custom-footer">
     </footer>
     <!-- include jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
