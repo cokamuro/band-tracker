@@ -3,6 +3,16 @@ img {
     display:inline;
 }
 
+.weather-icons {
+    height:auto;
+    display:inline;
+}
+
+.ticket-icons {
+    height:50px;
+    display:inline;
+}
+
 :root{
     --pink: #d63384; 
     --red: #dc3545; 
