@@ -143,6 +143,8 @@ $(document).ready( function(){
                         newConcertRow.children().eq(0).text(moment(thisEvent.datetime).format("M/D/YY H:mmA"));
                         newConcertRow.children().eq(1).text(thisEvent.venue.city)
                         newConcertRow.children().eq(2).text(thisEvent.venue.name +" ("+thisEvent.lineup+")")
+                        getWeatherByGCS(newConcertRow.children().eq(1),thisEvent.datetime,thisEvent.venue.latitude,thisEvent.venue.longitude);
+                        $('<a>', {text:'click', href: thisEvent.offers[0].url, target: '_blank'}).appendTo(newConcertRow.children().eq(3));
                         console.log(thisEvent)
                         $(".artist-id-" + thisEvent.artist_id).first().append(newConcertRow);
                     }
@@ -152,55 +154,16 @@ $(document).ready( function(){
     
     //add an image element, displaying imageURL (remember alt text), and band name as an a href to the bandURL
     //add the element to content
-    
-    function createEventRow(parentRow, eventDateTime, eventCity, eventVenue, ticketURL) {
-        //create row element 
-    
-        //add column for eventDateTime
-    
-        //call getWeather, passing eventCity, eventDateTime, and the new row element
-        var containerElement;
-        getWeather(eventCity, eventDateTime, containerElement)
-    
-        //add column for city
-    
-        //create column for venue
-    
-        //if ticketURL!=""
-        //create button for purchasing tickets
-    
-        //add row element to parentRow
-    }
-    
-    function getWeather(city, dateEvent, containerElement) {
-        var dateForecastLimit = new Date();
-        dateForecastLimit.setDate(dateForecastLimit.getDate() + 7);
-        //if dateEvent<=(today's date+7 days)
-        if (dateEvent < dateForecastLimit) {
-            //get lat/long from city, state?, country?
-            //if data, add image of 1x weather icon, setting alt text to text description, and add high temperature element
-            //https://openweathermap.org/api/geocoding-api
-            //get lat, long off of response, test for bad response - limit to 1 city returned
-            var params = "q=" + city + "&limit=1&appid=" + apiOpenWeather
-            fetch("https://api.openweathermap.org/geo/1.0/direct?" + params)
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (data) {
-                    if (data.length > 0) {
-                        var item = data[0]
-                        // make the next call to get the weather
-                        // call getWeatherByGCS, passing city name, latitude, and longitude
-                        getWeatherByGCS(containerElement, dateEvent, item.lat, item.lon);
-                    }
-                });
-        }
-    }
-    
-    function getWeatherByGCS(containerElement, dateWeather, lattitude, longitude) {
+      
+    function getWeatherByGCS(containerElement, dateEventString, lattitude, longitude) {
+        var dateEvent=new Date(dateEventString);
         var dateNow = new Date();
-        var intDateDiff = Math.floor((dateNow.getTime() - dateWeather.getTime()) / (24 * 3600 * 1000)) * -1 - 1
-    
+
+        var intDateDiff = Math.floor((dateNow.getTime() - dateEvent.getTime()) / (24 * 3600 * 1000)) * -1 - 1
+        
+        console.log(dateEvent,intDateDiff)
+        if (intDateDiff<=6) {
+
         console.log("gwcgcs", intDateDiff)
     
         //https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
@@ -213,8 +176,14 @@ $(document).ready( function(){
             .then(function (data) {
                 var forecast = data.daily[intDateDiff];
                 //TODO: 
+                containerElement.append("<img src='http://openweathermap.org/img/wn/" + forecast.weather[0].icon + ".png' class='weather-icons'>")
+                containerElement.append("("+forecast.temp.max+"°F)")
+                
+                
+                //$("#fcast-icon-" + index).attr("src", "http://openweathermap.org/img/wn/" + icon + ".png")
                 console.log(intDateDiff, forecast.temp.max, forecast.wind_speed, forecast.humidity, forecast.weather[0].main, forecast.weather[0].icon)
             })
+        }
     }
     
     
@@ -233,6 +202,7 @@ $(document).ready( function(){
         location.replace("index.html")
     })
     $("#content").on("click", function(event){
+        event.log(event.target)
         //remove band
         var classes=$(event.target).parent().parent().parent().attr("class").split(" ");
         var indexToRemove=-1
