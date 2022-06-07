@@ -89,6 +89,7 @@ $(document).ready( function(){
         newArtistBlock.removeClass("visually-hidden")
         //newArtistBlock.addClass("artist-id-"+artistID)
         newArtistBlock.addClass("artist-index-" + index)
+        newArtistBlock.addClass("dynamically-populated")
         var newArtistRow = newArtistBlock.find(".proto-artist-row")
         newArtistBlock.remove(".proto-header-row")
         newArtistBlock.remove(".proto-concert-row")
@@ -138,12 +139,12 @@ $(document).ready( function(){
                         var newConcertRow = $(".proto-concert-row").first().clone();
                         newConcertRow.removeClass("proto-concert-row")
                         newConcertRow.removeClass("visually-hidden")
-                        newConcertRow.addClass("dynamically-populated")
-                        newConcertRow.children().eq(0).text(thisEvent.datetime)
+                        newConcertRow.addClass("dynamically-populated")                        
+                        newConcertRow.children().eq(0).text(moment(thisEvent.datetime).format("M/D/YY H:mmA"));
                         newConcertRow.children().eq(1).text(thisEvent.venue.city)
                         newConcertRow.children().eq(2).text(thisEvent.venue.name +" ("+thisEvent.lineup+")")
                         console.log(thisEvent)
-                        $(".artist-id-" + thisEvent.artist_id).first().parent().append(newConcertRow);
+                        $(".artist-id-" + thisEvent.artist_id).first().append(newConcertRow);
                     }
                 });
         }
@@ -227,9 +228,9 @@ $(document).ready( function(){
     populateBands();
 
     $("#add-band").on("click", function(event){
-        alert($("#bandNameInput").val())
+        //alert($("#bandNameInput").val())
         saveBand($("#bandNameInput").val());
-        populateBands();
+        location.replace("index.html")
     })
     $("#content").on("click", function(event){
         //remove band
