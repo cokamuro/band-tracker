@@ -13,17 +13,18 @@
 
 <body>
     <!-- header block, equivalent of jumbotron -->
-    <header class="m-1 rounded">
+    <header class="p-2 custom-header">
         <div class="row">
-            <div class="col-sm-9 custom-header">
+            <div class="col-sm-9 header">
                 <h1>Band Tracker</h1>
             </div>
             <div class="col-sm-3">
-                <button type="button" class="btn btn-primary border border-white" data-bs-toggle="modal" data-bs-target="#bandBtn">
+                <button type="button" class="btn btn-primary border border-white" data-bs-toggle="modal"
+                    data-bs-target="#bandBtn">
                     Add a Band
                 </button>
             </div>
-          </div>
+        </div>
     </header>
     <!--Added modal from Bootstrap-->
     <!-- Vertically centered modal -->
@@ -39,7 +40,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button id="add-band" type="button" class="btn btn-primary" data-bs-dismiss="modal">Add Band</button>
+                    <button id="add-band" type="button" class="btn btn-primary" data-bs-dismiss="modal">Add
+                        Band</button>
                 </div>
             </div>
         </div>
@@ -51,31 +53,33 @@
 
     <section id="content">
         <section class="proto-artist-block">
-        <section class="row proto-artist-row">
+            <section class="row text-center proto-artist-row">
             <section class="col-12 p-2 artist">
                 <img scr="" class="rounded float-start">
                 <h1 class="h2"><a href="">ReplacedWithArtistName</a></h1>
-                <button class="btn btn-danger m-3">Remove</button>
-            </section>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn m-3">Remove</button>
+                </div>
             </section>
         </section>
-        <!--set css color variables, can change names-->
-        <div class="row border proto-header-row custom-info">
-            <div class="col-2 fw-bold">Date & Time</div>
-            <div class="col-2 fw-bold">City</div>
-            <div class="col-7 fw-bold">Venue</div>
-            <div class="col-1 fw-bold">Tickets</div>
-        </div>
-        <div class="row border proto-concert-row custom-row">
-            <div class="col-2 fw-bolder"></div>
-            <div class="col-2 fw-bolder"></div>
-            <div class="col-7 fw-bolder"></div>
-            <div class="col-1 fw-bolder"></div>
-        </div>
+    </section>
+    <!--set css color variables, can change names-->
+    <div class="row border proto-header-row custom-info">
+        <div class="col-2 fw-bold">Date & Time</div>
+        <div class="col-2 fw-bold">City</div>
+        <div class="col-7 fw-bold">Venue</div>
+        <div class="col-1 fw-bold">Tickets</div>
+    </div>
+    <div class="row border proto-concert-row custom-row">
+        <div class="col-2 fw-bolder"></div>
+        <div class="col-2 fw-bolder"></div>
+        <div class="col-7 fw-bolder"></div>
+        <div class="col-1 fw-bolder"></div>
+    </div>
     </section>
 
     <!-- footer block, equivalent of jumbotron -->
-    <footer class="m-1 p-2 custom-footer">
+    <footer class="p-3 custom-footer">
     </footer>
     <!-- include jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

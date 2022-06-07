@@ -18,9 +18,15 @@ img {
 .artist {
     background-color: var(--dark);
 }
+.proto-artist-row {
+    background-color: var(--dark);
+}
 .row {
     font-size: 1.5rem;
     color: var(--red);
+  }
+  .header {
+    color: var(--dark)
   }
   
   .custom-header{
