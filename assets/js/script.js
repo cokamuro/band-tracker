@@ -1,8 +1,11 @@
 var apiBIT = "codingbootcamp";
 var apiOpenWeather = "26430011a9e304ff62d863402ab09fcc";
-var bandBtn = document.querySelector('#bandBtn');
 
-$(document).ready( function(){
+$("#add-band").on("click", function(event){
+    saveBand($("#bandNameInput").val());
+})
+
+//$(document).ready( function(){
 
     function populateBands() {
         //clear existing artist blocks on refresh
@@ -231,4 +234,4 @@ $(document).ready( function(){
     saveBand("Grimes");
     saveBand("Speedy Ortiz");
     populateBands();
-})
+//})
