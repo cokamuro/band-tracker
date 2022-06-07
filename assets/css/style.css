@@ -1,3 +1,8 @@
+img {
+    height:100px;
+    display:inline;
+}
+
 :root{
     --pink: #d63384; 
     --red: #dc3545; 
