@@ -12,13 +12,8 @@ $(document).ready( function(){
         if (delimBandString != "") {
             //turn the delimited string into a string array
             var bands = delimBandString.split("***")
-            //loop through the string array
-            //for (i = 0; i < bands.length; i++) {
-                //split out the code to create the dynamic HTML elements
-                // createBandSection(bands[i], i)
-                //put the 
-                getBandInfo(bands, 0);
-           // }
+            //first call to getBandInfo
+            getBandInfo(bands, 0);
         }
     }
     
@@ -36,6 +31,7 @@ $(document).ready( function(){
                     var retJSON = JSON.parse(data)
                     //createBandSection(bandName, retBandObj.artistID, retBandObj.eventCount);
                     populateBandSection(index, bandArray[index], retJSON.id, retJSON.upcoming_event_count, retJSON.thumb_url, retJSON.url);
+                    //recursive call to getBandInfo
                     if(index<bandArray.length-1) {
                         getBandInfo(bandArray, index+1);
                     }
@@ -47,8 +43,7 @@ $(document).ready( function(){
         //add band to localStorage, if no duplicates are found
         bandName = bandName.trim();
     
-        var delimBandString = localStorage.getItem("Bands");
-    
+        var delimBandString = localStorage.getItem("Bands");   
         if (delimBandString != "" && delimBandString != null) {
             //turn the delimited string into a string array
     
@@ -140,21 +135,26 @@ $(document).ready( function(){
                         newConcertRow.removeClass("proto-concert-row")
                         newConcertRow.removeClass("visually-hidden")
                         newConcertRow.addClass("dynamically-populated")                        
-                        newConcertRow.children().eq(0).text(moment(thisEvent.datetime).format("M/D/YY H:mmA"));
+                        if(moment(thisEvent.datetime).format("mm")=="00"){
+                            newConcertRow.children().eq(0).text(moment(thisEvent.datetime).format("M/D/YY hA"));
+                        } else {
+                            newConcertRow.children().eq(0).text(moment(thisEvent.datetime).format("M/D/YY h:mmA"));
+                        }
+                        
                         newConcertRow.children().eq(1).text(thisEvent.venue.city)
-                        newConcertRow.children().eq(2).text(thisEvent.venue.name +" ("+thisEvent.lineup+")")
+                        newConcertRow.children().eq(2).text(thisEvent.venue.name)
+                        newConcertRow.children().eq(2).append(" <span class='h6'>("+thisEvent.lineup+")</span>")
                         getWeatherByGCS(newConcertRow.children().eq(1),thisEvent.datetime,thisEvent.venue.latitude,thisEvent.venue.longitude);
-                        $('<a>', {text:'click', href: thisEvent.offers[0].url, target: '_blank'}).appendTo(newConcertRow.children().eq(3));
+
+                        //$('<a>', {text:'click', href: thisEvent.offers[0].url, target: '_blank'}).appendTo(newConcertRow.children().eq(3));
+                        newConcertRow.children().eq(3).append("<a href='"+thisEvent.offers[0].url+"' target='_blank'><img class='ticket-icons' src='./assets/images/ticket.png' alt='Buy tickets here!'</a>")
                         console.log(thisEvent)
                         $(".artist-id-" + thisEvent.artist_id).first().append(newConcertRow);
                     }
                 });
         }
     }
-    
-    //add an image element, displaying imageURL (remember alt text), and band name as an a href to the bandURL
-    //add the element to content
-      
+         
     function getWeatherByGCS(containerElement, dateEventString, lattitude, longitude) {
         var dateEvent=new Date(dateEventString);
         var dateNow = new Date();
@@ -186,23 +186,18 @@ $(document).ready( function(){
         }
     }
     
-    
-    
     $(".proto-artist-row").addClass("visually-hidden")
     $(".proto-header-row").addClass("visually-hidden")
     $(".proto-concert-row").addClass("visually-hidden")
     
-    //var eventDateTime=new Date("6/10/2022");
-    //getWeather("Charlotte",eventDateTime,"");
     populateBands();
 
     $("#add-band").on("click", function(event){
-        //alert($("#bandNameInput").val())
         saveBand($("#bandNameInput").val());
         location.replace("index.html")
     })
     $("#content").on("click", function(event){
-        event.log(event.target)
+        console.log(event.target)
         //remove band
         var classes=$(event.target).parent().parent().parent().attr("class").split(" ");
         var indexToRemove=-1
