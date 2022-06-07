@@ -14,7 +14,16 @@
 <body>
     <!-- header block, equivalent of jumbotron -->
     <header class="m-1 p-2 bg-primary text-white rounded">
-        <h1>Band Tracker</h1>
+        <div class="row">
+            <div class="col-sm-9">
+                <h1>Band Tracker</h1>
+            </div>
+            <div class="col-sm-3">
+                <button type="button" class="btn btn-primary border border-white" data-bs-toggle="modal" data-bs-target="#bandBtn">
+                    Add a Band
+                </button>
+            </div>
+          </div>
     </header>
     <!--Added modal from Bootstrap-->
     <!-- Vertically centered modal -->
@@ -39,10 +48,7 @@
     <!--Added modal from Bootstrap-->
     <!-- Vertically centered modal -->
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary m-3" data-bs-toggle="modal" data-bs-target="#bandBtn">
-        Add a Band
-    </button>
-  
+
     <section id="content">
         <section class="row proto-artist-row">
             <section class="col-12 p-2 artist">
