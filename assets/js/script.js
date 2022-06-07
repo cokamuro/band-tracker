@@ -1,12 +1,12 @@
 var apiBIT = "codingbootcamp";
 var apiOpenWeather = "26430011a9e304ff62d863402ab09fcc";
 
-$(document).ready( function(){
+$(document).ready(function () {
 
     function populateBands() {
         //clear existing artist blocks on refresh
         $(".dynamically-populated").remove();
-    
+
         //read bands from localStorage
         var delimBandString = localStorage.getItem("Bands");
         if (delimBandString != "") {
@@ -16,7 +16,7 @@ $(document).ready( function(){
             getBandInfo(bands, 0);
         }
     }
-    
+
     function getBandInfo(bandArray, index) {
         //need to URL encode the band name?
         createBandSection(bandArray[index], index);
@@ -32,21 +32,21 @@ $(document).ready( function(){
                     //createBandSection(bandName, retBandObj.artistID, retBandObj.eventCount);
                     populateBandSection(index, bandArray[index], retJSON.id, retJSON.upcoming_event_count, retJSON.thumb_url, retJSON.url);
                     //recursive call to getBandInfo
-                    if(index<bandArray.length-1) {
-                        getBandInfo(bandArray, index+1);
+                    if (index < bandArray.length - 1) {
+                        getBandInfo(bandArray, index + 1);
                     }
                 }
             });
     }
-    
+
     function saveBand(bandName) {
         //add band to localStorage, if no duplicates are found
         bandName = bandName.trim();
-    
-        var delimBandString = localStorage.getItem("Bands");   
+
+        var delimBandString = localStorage.getItem("Bands");
         if (delimBandString != "" && delimBandString != null) {
             //turn the delimited string into a string array
-    
+
             if (delimBandString.includes("***")) {
                 var bands = delimBandString.split("***")
                 //loop through the string array
@@ -67,19 +67,19 @@ $(document).ready( function(){
                     localStorage.setItem("Bands", delimBandString + "***" + bandName);
                 }
             }
-    
+
         } else {
             //if no bands were in localstorage, add this one
             localStorage.setItem("Bands", bandName);
             populateBands();
         }
     }
-    
+
     function createBandSection(bandName, index) {
         //grab proto-artist-row
         var protoArtistBlock = $(".proto-artist-block")
         var newArtistBlock = protoArtistBlock.clone();
-    
+
         newArtistBlock.removeClass("proto-artist-block")
         newArtistBlock.removeClass("visually-hidden")
         //newArtistBlock.addClass("artist-id-"+artistID)
@@ -90,7 +90,7 @@ $(document).ready( function(){
         newArtistBlock.remove(".proto-concert-row")
         var protoHeaderRow = $(".proto-header-row")
         var protoConcertRow = $(".proto-concert-row")
-    
+
         newArtistRow.removeClass("proto-artist-row")
         newArtistRow.removeClass("visually-hidden")
         newArtistRow.addClass("dynamically-populated")
@@ -101,23 +101,27 @@ $(document).ready( function(){
         newHeaderRow.removeClass("visually-hidden")
         newHeaderRow.addClass("dynamically-populated")
         newArtistBlock.append(newHeaderRow)
-    
+        newArtistBlock.find("button").first().attr("id","remove-" + index)
         $("#content").append(newArtistBlock)
     }
-    
+
     function populateBandSection(index, bandName, artistID, eventCount, thumbnailURL, websiteURL) {
         //grab artist block by class
-    
+
         var artistBlock = $(".artist-index-" + index)
         artistBlock.addClass("artist-id-" + artistID)
-        var imgEl=artistBlock.find("img").eq(0);
-        imgEl.attr("src",thumbnailURL)
-        imgEl.attr("alt",bandName+" band thumbnail")
-    
+        var imgEl = artistBlock.find("img").eq(0);
+        imgEl.attr("src", thumbnailURL)
+        imgEl.attr("alt", bandName + " band thumbnail")
+
+        var aEl = artistBlock.find("a").eq(0);
+        aEl.attr("href", websiteURL)
+        aEl.attr("target", "_blank")
+
         if (eventCount != 0) {
             //get concerts
             //need to URL encode the band name?
-    
+
             //https://rest.bandsintown.com/artists/{{artist_name}}/events/?app_id=
             var params = "app_id=" + apiBIT
             fetch("https://rest.bandsintown.com/artists/" + bandName + "/events/?" + params)
@@ -128,89 +132,79 @@ $(document).ready( function(){
                     var retJSON = JSON.parse(data)
                     for (i = 0; i < retJSON.length; i++) {
                         var thisEvent = retJSON[i]
-    
+
                         //loop through the concerts
                         //clone the concert rows
                         var newConcertRow = $(".proto-concert-row").first().clone();
                         newConcertRow.removeClass("proto-concert-row")
                         newConcertRow.removeClass("visually-hidden")
-                        newConcertRow.addClass("dynamically-populated")                        
-                        if(moment(thisEvent.datetime).format("mm")=="00"){
-                            newConcertRow.children().eq(0).text(moment(thisEvent.datetime).format("M/D/YY hA"));
+                        newConcertRow.addClass("dynamically-populated")
+
+                        newConcertRow.children().eq(0).text(moment(thisEvent.datetime).format("M/D/YY"))
+                        var formattedTime
+                        if (moment(thisEvent.datetime).format("mm") == "00") {
+                            formattedTime=moment(thisEvent.datetime).format("hA");                      
                         } else {
-                            newConcertRow.children().eq(0).text(moment(thisEvent.datetime).format("M/D/YY h:mmA"));
+                            formattedTime=moment(thisEvent.datetime).format("h:mmA");
                         }
-                        
+                        newConcertRow.children().eq(0).append(" <span class='accent-text h6'>"+formattedTime+"</span>");
+
                         newConcertRow.children().eq(1).text(thisEvent.venue.city)
                         newConcertRow.children().eq(2).text(thisEvent.venue.name)
-                        newConcertRow.children().eq(2).append(" <span class='h6'>("+thisEvent.lineup+")</span>")
-                        getWeatherByGCS(newConcertRow.children().eq(1),thisEvent.datetime,thisEvent.venue.latitude,thisEvent.venue.longitude);
-
-                        //$('<a>', {text:'click', href: thisEvent.offers[0].url, target: '_blank'}).appendTo(newConcertRow.children().eq(3));
-                        newConcertRow.children().eq(3).append("<a href='"+thisEvent.offers[0].url+"' target='_blank'><img class='ticket-icons' src='./assets/images/ticket.png' alt='Buy tickets here!'</a>")
-                        console.log(thisEvent)
+                        newConcertRow.children().eq(2).append(" <span class='h6 accent-text'>(" + thisEvent.lineup + ")</span>")
+                        getWeatherByGCS(newConcertRow.children().eq(1), thisEvent.datetime, thisEvent.venue.latitude, thisEvent.venue.longitude);
+                        newConcertRow.children().eq(3).append("<a href='" + thisEvent.offers[0].url + "' target='_blank'><img class='ticket-icons' src='./assets/images/ticket.png' alt='Buy tickets here!'</a>")
                         $(".artist-id-" + thisEvent.artist_id).first().append(newConcertRow);
                     }
                 });
         }
     }
-         
+
     function getWeatherByGCS(containerElement, dateEventString, lattitude, longitude) {
-        var dateEvent=new Date(dateEventString);
+        var dateEvent = new Date(dateEventString);
         var dateNow = new Date();
 
         var intDateDiff = Math.floor((dateNow.getTime() - dateEvent.getTime()) / (24 * 3600 * 1000)) * -1 - 1
-        
-        console.log(dateEvent,intDateDiff)
-        if (intDateDiff<=6) {
 
-        console.log("gwcgcs", intDateDiff)
-    
-        //https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
-        //set units to imperial - degrees F/wind mph
-        var params = "lat=" + lattitude + "&lon=" + longitude + "&exclude=minutely,hourly,alerts&units=imperial&appid=" + apiOpenWeather
-        fetch("https://api.openweathermap.org/data/2.5/onecall?" + params)
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                var forecast = data.daily[intDateDiff];
-                //TODO: 
-                containerElement.append("<img src='http://openweathermap.org/img/wn/" + forecast.weather[0].icon + ".png' class='weather-icons'>")
-                containerElement.append("("+forecast.temp.max+"°F)")
-                
-                
-                //$("#fcast-icon-" + index).attr("src", "http://openweathermap.org/img/wn/" + icon + ".png")
-                console.log(intDateDiff, forecast.temp.max, forecast.wind_speed, forecast.humidity, forecast.weather[0].main, forecast.weather[0].icon)
-            })
+        if (intDateDiff <= 6) {
+            //https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
+            //set units to imperial - degrees F/wind mph
+            var params = "lat=" + lattitude + "&lon=" + longitude + "&exclude=minutely,hourly,alerts&units=imperial&appid=" + apiOpenWeather
+            fetch("https://api.openweathermap.org/data/2.5/onecall?" + params)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    var forecast = data.daily[intDateDiff];
+                    containerElement.append("<img src='http://openweathermap.org/img/wn/" + forecast.weather[0].icon + ".png' class='weather-icons'>")
+                    containerElement.append("<span class='accent-text h6'>(" + Math.floor(forecast.temp.max)+"/"+Math.floor(forecast.temp.min)+ "°F)</span>")
+                })
         }
     }
-    
+
     $(".proto-artist-row").addClass("visually-hidden")
     $(".proto-header-row").addClass("visually-hidden")
     $(".proto-concert-row").addClass("visually-hidden")
-    
+
     populateBands();
 
-    $("#add-band").on("click", function(event){
+    $("#add-band").on("click", function (event) {
         saveBand($("#bandNameInput").val());
         location.replace("index.html")
     })
-    $("#content").on("click", function(event){
-        console.log(event.target)
-        //remove band
-        var classes=$(event.target).parent().parent().parent().attr("class").split(" ");
+    $("#content").on("click", function (event) {
         var indexToRemove=-1
-        for(i=0;i<classes.length;i++){
-            if(classes[i].includes("artist-index-")){
-                indexToRemove=classes[i].substring(13).trim();
-            }
+
+        if (event.target.id.startsWith("remove-")) {
+            indexToRemove = event.target.id.substring(7).trim();
         }
-        if(indexToRemove!=-1){
+          
+        //remove band
+        if (indexToRemove != -1) {
             var delimBandString = localStorage.getItem("Bands");
-            var bandArray=delimBandString.split("***")
-            bandArray.splice(indexToRemove,1)
-            localStorage.setItem("Bands",bandArray.join("***"));
+            var bandArray = delimBandString.split("***")
+            bandArray.splice(indexToRemove, 1)
+            localStorage.setItem("Bands", bandArray.join("***"));
             populateBands();
         }
     })
