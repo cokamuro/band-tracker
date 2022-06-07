@@ -30,7 +30,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Add Band</button>
+                    <button id="add-band" type="button" class="btn btn-primary" data-bs-dismiss="modal">Add Band</button>
                 </div>
             </div>
         </div>
@@ -44,10 +44,12 @@
     </button>
   
     <section id="content">
+        <section class="proto-artist-block">
         <section class="row proto-artist-row">
             <section class="col-12 p-2 artist">
                 <img scr="">
-                <h1><a href="">ReplacedWithArtistName</a></h1>
+                <h1 class="h2"><a href="">ReplacedWithArtistName</a></h1>
+                <button class="btn btn-danger m-3">Remove</button>
             </section>
         </section>
         <!--set css color variables, can change names-->
@@ -63,7 +65,7 @@
             <div class="col-7 fw-bolder bg-success"></div>
             <div class="col-1 fw-bolder bg-warning"></div>
         </div>
-    </section>
+        </section>
     </section>
 
     <!-- footer block, equivalent of jumbotron -->

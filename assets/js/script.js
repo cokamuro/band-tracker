@@ -1,11 +1,7 @@
 var apiBIT = "codingbootcamp";
 var apiOpenWeather = "26430011a9e304ff62d863402ab09fcc";
 
-$("#add-band").on("click", function(event){
-    saveBand($("#bandNameInput").val());
-})
-
-//$(document).ready( function(){
+$(document).ready( function(){
 
     function populateBands() {
         //clear existing artist blocks on refresh
@@ -120,8 +116,7 @@ $("#add-band").on("click", function(event){
         artistBlock.addClass("artist-id-" + artistID)
         var imgEl=artistBlock.find("img").eq(0);
         imgEl.attr("src",thumbnailURL)
-        console.log("image",imgEl)
-        //.attr("scr",thumbnailURL)
+        imgEl.attr("alt",bandName+" band thumbnail")
     
         if (eventCount != 0) {
             //get concerts
@@ -146,8 +141,8 @@ $("#add-band").on("click", function(event){
                         newConcertRow.addClass("dynamically-populated")
                         newConcertRow.children().eq(0).text(thisEvent.datetime)
                         newConcertRow.children().eq(1).text(thisEvent.venue.city)
-                        newConcertRow.children().eq(2).text(thisEvent.venue.name)
-                        //console.log(thisEvent.artist_id,thisEvent.datetime,thisEvent.venue.city,thisEvent.venue.name)
+                        newConcertRow.children().eq(2).text(thisEvent.venue.name +" ("+thisEvent.lineup+")")
+                        console.log(thisEvent)
                         $(".artist-id-" + thisEvent.artist_id).first().parent().append(newConcertRow);
                     }
                 });
@@ -229,9 +224,28 @@ $("#add-band").on("click", function(event){
     
     //var eventDateTime=new Date("6/10/2022");
     //getWeather("Charlotte",eventDateTime,"");
-    saveBand("Torres");
-    saveBand("Spiritbox");
-    saveBand("Grimes");
-    saveBand("Speedy Ortiz");
     populateBands();
-//})
+
+    $("#add-band").on("click", function(event){
+        alert($("#bandNameInput").val())
+        saveBand($("#bandNameInput").val());
+        populateBands();
+    })
+    $("#content").on("click", function(event){
+        //remove band
+        var classes=$(event.target).parent().parent().parent().attr("class").split(" ");
+        var indexToRemove=-1
+        for(i=0;i<classes.length;i++){
+            if(classes[i].includes("artist-index-")){
+                indexToRemove=classes[i].substring(13).trim();
+            }
+        }
+        if(indexToRemove!=-1){
+            var delimBandString = localStorage.getItem("Bands");
+            var bandArray=delimBandString.split("***")
+            bandArray.splice(indexToRemove,1)
+            localStorage.setItem("Bands",bandArray.join("***"));
+            populateBands();
+        }
+    })
+})
