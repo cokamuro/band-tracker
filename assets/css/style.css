@@ -1,5 +1,5 @@
 img {
-    height:100px;
+    height:200px;
     display:inline;
 }
 
@@ -12,7 +12,9 @@ img {
     --light: #fff;
     --dark: #000;
 }
-
+.proto-artist-block {
+    color: var(--pink);
+}
 .artist {
     background-color: var(--dark);
 }
