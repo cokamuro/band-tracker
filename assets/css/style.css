@@ -6,7 +6,7 @@ img {
 :root{
     --pink: #d63384; 
     --red: #dc3545; 
-    --orange: #fd7e14;
+    --pastel: #f05eb3;
     --yellow: #ffc107; 
     --cyan: #0dcaf0; 
     --light: #fff;
@@ -32,11 +32,23 @@ img {
   .custom-header{
     background-color: var(--pink);
     color: var(--dark);
+    font-family: 'Oswald', sans-serif;
+  }
+  .modal-content{
+      background-color: var(--pastel);
+      color: var(--dark);
   }
   .btn {
     background-color: var(--pink);
     color: var(--dark);
+    font-family: 'Oswald', sans-serif;
   }
+.btn.active{
+  background-color: var(--pink);
+    color: var(--dark);
+    font-family: 'Oswald', sans-serif;
+}
+
   .btn:hover {
     background-color: var(--dark);
     color: var(--pink);
@@ -50,8 +62,8 @@ img {
     color: var(--pink);
   }
   .custom-info {
-      background-color: var(--dark);
- color: var(--pink);
+      background-color: var(--pink);
+ color: var(--dark);
   }
   .custom-footer{
       background-color: var(--pink);
