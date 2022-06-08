@@ -11,11 +11,11 @@
 
 
 ## Visuals
-![Band Tracker](./images/...)
+![Band Tracker](./images/final-band-tracker.png)
 
 
 ## Collaborators
-
+Chris Okamuro, Sela Privette, Victoria Malie
 
 
 ## Resources
