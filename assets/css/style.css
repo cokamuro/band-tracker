@@ -13,15 +13,20 @@ img {
 
 :root {
   --pink: #D63384;
+  --moodypink: #701A45;
   --red: #DC3545;
   --pastel: #F05EB3;
-  --baby-pink: #f3b6e9;
-  --cyan: #0DCAF0;
+  --baby-pink: #F3B6E9;
   --light: #fff;
   --dark: #000;
 }
+.accent-text {
+  color: var(--moodypink);
+  text-shadow: ;
+}
 .body {
   background-color: var(--dark);
+  font-family: 'Libre Baskerville', serif;
 }
 
 .proto-artist-block {
@@ -39,7 +44,8 @@ img {
 .h2 {
   color: var(--light);
   display: inline-flex;
-  font-family: 'Kdam Thmor Pro', sans-serif;
+  text-shadow: 0 0 3px var(--dark), 0 0 5px var(--dark) ;
+  font-family: 'Creepster', cursive;
 }
 
 .row {
@@ -47,8 +53,17 @@ img {
 } 
 
 .header {
-  color: var(--dark)
-}
+  color: var(--dark);
+  text-shadow:
+      0 0 7px var(--pastel),
+      0 0 10px var(--baby-pink),
+      0 0 21px var(--baby-pink),
+      0 0 42px var(--pastel),
+      0 0 82px var(--pastel),
+      0 0 92px var(--pastel),
+      0 0 102px var(--pastel),
+      0 0 151px var(--pastel);
+    }
 
 .custom-header {
   background-color: var(--pink);
@@ -56,7 +71,7 @@ img {
   font-family: 'Oswald', sans-serif;
   position:sticky;
   top:0;
-  width: 100%;
+  width: 100%
 }
 
 .modal-content {
@@ -95,16 +110,19 @@ img {
   background-color: var(--pink);
   color: var(--dark);
 }
-.custom-footer{
-    background-color: var(--pink);
-}
+
 .custom-footer {
   background-color: var(--pink);
   font-family: 'Oswald', sans-serif; 
   color: var(--dark);
-  position: fixed;
+  position: sticky;
   padding: 10px 10px 0px 10px;
   bottom: 0;
   width:100%;
 }
 
+.custom-border {
+  border: solid;
+  margin: 3px;
+  border-color: var(--pastel);
+}
