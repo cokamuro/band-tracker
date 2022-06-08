@@ -10,6 +10,10 @@ img {
   height:50px;
   display:inline;
 }
+.ticket-icons:hover {
+  height:55px;
+  display:inline;
+}
 :root{
   --pink: #D63384;
   --moodypink: #701a45;
