@@ -92,3 +92,8 @@ color: var(--dark);
 .custom-footer{
     background-color: var(--pink);
 }
+
+.custom-border {
+  border: solid;
+  border-color: var(--pastel);
+}
