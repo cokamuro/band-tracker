@@ -10,9 +10,14 @@ img {
   height: 35px;
   display: inline;
 }
+.ticket-icons:hover {
+  height:55px;
+  display:inline;
+}
 
 :root {
   --pink: #D63384;
+  --moodypink: #701a45;
   --red: #DC3545;
   --pastel: #F05EB3;
   --baby-pink: #f3b6e9;
