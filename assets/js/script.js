@@ -163,8 +163,13 @@ $(document).ready(function () {
                         newConcertRow.children().eq(2).append(" <span class='h6 accent-text'>(" + thisEvent.lineup + ")</span>")
                         //use the event date, and venue lat/long to lookup the weather
                         getWeatherByGCS(newConcertRow.children().eq(1), thisEvent.datetime, thisEvent.venue.latitude, thisEvent.venue.longitude);
-                        //set the link for buying event tickets
-                        newConcertRow.children().eq(3).append("<a href='" + thisEvent.offers[0].url + "' target='_blank'><img class='ticket-icons' src='./assets/images/ticket.png' alt='Buy tickets here!'</a>")
+                        
+                        //check to see if there is a ticket buying link
+                        if(thisEvent.offers.length!=0){
+                            //set the link for buying event tickets
+                            newConcertRow.children().eq(3).append("<a href='" + thisEvent.offers[0].url + "' target='_blank'><img class='ticket-icons' src='./assets/images/ticket.png' alt='Buy tickets here!'</a>")
+                        }
+                        
                         //add the element to the artist block
                         $(".artist-id-" + thisEvent.artist_id).first().append(newConcertRow);
                     }
@@ -190,7 +195,7 @@ $(document).ready(function () {
                 .then(function (data) {
                     var forecast = data.daily[intDateDiff];
                     //set the weather icon, and set the alt text to the weather description for accessibility
-                    containerElement.append("<img src='http://openweathermap.org/img/wn/" + forecast.weather[0].icon + ".png' class='weather-icons'>")
+                    containerElement.append("<img src='https://openweathermap.org/img/wn/" + forecast.weather[0].icon + ".png' class='weather-icons'>")
                     //show the high/low temp
                     containerElement.append("<span class='accent-text h6'>(" + Math.floor(forecast.temp.max) + "/" + Math.floor(forecast.temp.min) + "°F)</span>")
                 })

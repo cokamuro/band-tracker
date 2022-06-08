@@ -11,8 +11,9 @@ img {
   display: inline;
 }
 .ticket-icons:hover {
-  height:55px;
-  display:inline;
+  transform: rotate(23deg) scale(2);
+  transform-origin: center;
+  z-index: 1;
 }
 
 :root {
@@ -25,9 +26,14 @@ img {
   --light: #fff;
   --dark: #000;
 }
+
+.accent-text {
+  color: var(--moodypink);
+}
 .body {
   background-color: var(--dark);
 }
+
 
 .proto-artist-block {
   color: var(--pink);
