@@ -20,6 +20,9 @@ img {
   --light: #fff;
   --dark: #000;
 }
+.body {
+  background-color: var(--dark);
+}
 
 .proto-artist-block {
   color: var(--pink);
@@ -41,7 +44,7 @@ img {
 
 .row {
   font-size: 1.3rem;
-}
+} 
 
 .header {
   color: var(--dark)
@@ -51,6 +54,9 @@ img {
   background-color: var(--pink);
   color: var(--dark);
   font-family: 'Oswald', sans-serif;
+  position:sticky;
+  top:0;
+  width: 100%;
 }
 
 .modal-content {
@@ -92,8 +98,13 @@ img {
 .custom-footer{
     background-color: var(--pink);
 }
-
-.custom-border {
-  border: solid;
-  border-color: var(--pastel);
+.custom-footer {
+  background-color: var(--pink);
+  font-family: 'Oswald', sans-serif; 
+  color: var(--dark);
+  position: fixed;
+  padding: 10px 10px 0px 10px;
+  bottom: 0;
+  width:100%;
 }
+
