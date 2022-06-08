@@ -1,78 +1,75 @@
 img {
-  height:200px;
-  display:inline;
+  height: 150px;
+  display: inline;
 }
 .weather-icons {
-  height:auto;
-  display:inline;
+  height: auto;
+  display: inline;
 }
 .ticket-icons {
-  height:50px;
-  display:inline;
+  height: 35px;
+  display: inline;
 }
-:root{
+
+:root {
   --pink: #D63384;
-  --moodypink: #701a45;
   --red: #DC3545;
   --pastel: #F05EB3;
-  --yellow: #FFC107;
+  --baby-pink: #f3b6e9;
   --cyan: #0DCAF0;
   --light: #fff;
   --dark: #000;
 }
+
 .proto-artist-block {
   color: var(--pink);
 }
+
 .artist {
   background-color: var(--dark);
 }
+
 .proto-artist-row {
   background-color: var(--dark);
 }
-.h2{
+
+.h2 {
   color: var(--light);
-  display: inline;
+  display: inline-flex;
+  font-family: 'Kdam Thmor Pro', sans-serif;
 }
 
-.accent-text {
-    color: var(--moodypink);
-}
-
-.h2{
-    color: var(--light);
-    display: inline;
-}
 .row {
-    font-size: 1.5rem;
-    color: var(--red);
-  }
-  .header {
-    color: var(--dark)
-  }
-
-  .custom-header{
-    background-color: var(--pink);
-    color: var(--dark);
-    font-family: 'Oswald', sans-serif;
-  }
-  .modal-content{
-      background-color: var(--pastel);
-      color: var(--dark);
-  }
-  .btn {
-    background-color: var(--pink);
-    color: var(--dark);
+  font-size: 1.3rem;
 }
+
+.header {
+  color: var(--dark)
+}
+
+.custom-header {
+  background-color: var(--pink);
+  color: var(--dark);
+  font-family: 'Oswald', sans-serif;
+}
+
+.modal-content {
+  background-color: var(--pastel);
+  color: var(--dark);
+}
+
 .btn {
   background-color: var(--pink);
   color: var(--dark);
   font-family: 'Oswald', sans-serif;
 }
-.btn.active{
-background-color: var(--pink);
+
+.btn.active {
+  background-color: var(--pink);
   color: var(--dark);
   font-family: 'Oswald', sans-serif;
 }
+
 .btn:hover {
   background-color: var(--dark);
   color: var(--pink);
@@ -81,14 +78,18 @@ background-color: var(--pink);
   background-color: var(--pink);
   color: var(--dark);
 }
-.custom-row{
+
+.custom-row {
   background-color: var(--dark);
   color: var(--pink);
+  border: 5px solid var(--pastel);
 }
+
 .custom-info {
-    background-color: var(--pink);
-color: var(--dark);
+  background-color: var(--pink);
+  color: var(--dark);
 }
-.custom-footer{
-    background-color: var(--pink);
+
+.custom-footer {
+  background-color: var(--pink);
 }
