@@ -14,6 +14,8 @@ img {
   transform: rotate(23deg) scale(2);
   transform-origin: center;
   z-index: 1;
+  background-color: var(--pink);
+  opacity: 50%;
 }
 
 :root {
@@ -26,12 +28,19 @@ img {
   --dark: #000;
 }
 .accent-text {
-  color: var(--moodypink);
-  text-shadow: ;
+  color: var(--baby-pink);
+  text-shadow: 0 0 7px var(--pastel),
+  0 0 10px var(--pastel),
+  0 0 21px var(--pastel),
+  0 0 42px var(--pastel),
+  0 0 82px var(--pastel),
+  0 0 92px var(--pastel),
+  0 0 102px var(--pastel),
+  0 0 151px var(--pastel); ;
 }
 .body {
   background-color: var(--dark);
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Oswald', sans-serif;
 }
 
 
