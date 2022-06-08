@@ -95,7 +95,9 @@ img {
   background-color: var(--pink);
   color: var(--dark);
 }
-
+.custom-footer{
+    background-color: var(--pink);
+}
 .custom-footer {
   background-color: var(--pink);
   font-family: 'Oswald', sans-serif; 
@@ -105,3 +107,4 @@ img {
   bottom: 0;
   width:100%;
 }
+
