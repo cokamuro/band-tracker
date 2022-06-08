@@ -157,3 +157,12 @@ img {
   margin: 3px;
   border-color: var(--pastel);
 }
+
+.placeholder-layout {
+  color: var(--pastel);
+  margin-top: 30%;
+  font-size: 30px;
+}
+.placeholder-container {
+  height: 100vh;
+}
