@@ -14,24 +14,27 @@ img {
 }
 
 .ticket-icons:hover {
-  height: 55px;
-  display: inline;
+  transform: rotate(23deg) scale(2);
+  transform-origin: center;
+  z-index: 1;
+  background-color: var(--pink);
+  opacity: 50%;
 }
 
 :root {
   --pink: #D63384;
-  --moodypink: #701a45;
+  --moodypink: #701A45;
   --red: #DC3545;
   --pastel: #F05EB3;
-  --baby-pink: #f3b6e9;
-  --cyan: #0DCAF0;
+  --baby-pink: #F3B6E9;
   --light: #fff;
   --dark: #000;
 }
-
 .body {
   background-color: var(--dark);
+  font-family: 'Oswald', sans-serif;
 }
+
 
 .proto-artist-block {
   color: var(--pink);
@@ -48,7 +51,15 @@ img {
 .h2 {
   color: var(--light);
   display: inline-flex;
-  font-family: 'Kdam Thmor Pro', sans-serif;
+  text-shadow:  0 0 7px var(--pastel),
+  0 0 10px var(--baby-pink),
+  0 0 21px var(--baby-pink),
+  0 0 42px var(--pastel),
+  0 0 82px var(--pastel),
+  0 0 92px var(--pastel),
+  0 0 102px var(--pastel),
+  0 0 151px var(--pastel);
+  font-family: 'Creepster', cursive;
 }
 
 .row {
@@ -56,8 +67,17 @@ img {
 }
 
 .header {
-  color: var(--dark)
-}
+  color: var(--dark);
+  text-shadow:
+      0 0 7px var(--pastel),
+      0 0 10px var(--baby-pink),
+      0 0 21px var(--baby-pink),
+      0 0 42px var(--pastel),
+      0 0 82px var(--pastel),
+      0 0 92px var(--pastel),
+      0 0 102px var(--pastel),
+      0 0 151px var(--pastel);
+    }
 
 .custom-header {
   background-color: var(--pink);
@@ -114,7 +134,16 @@ img {
   background-color: var(--pink);
   font-family: 'Oswald', sans-serif;
   color: var(--dark);
-  position: fixed;
+  text-shadow: 
+  0 0 7px var(--pastel),
+  0 0 10px var(--baby-pink),
+  0 0 21px var(--baby-pink),
+  0 0 42px var(--pastel),
+  0 0 82px var(--pastel),
+  0 0 92px var(--pastel),
+  0 0 102px var(--pastel),
+  0 0 151px var(--pastel);
+  position: sticky;
   padding: 10px 10px 0px 10px;
   bottom: 0;
   width: 100%;
@@ -128,4 +157,9 @@ img {
 
 .placeholder-container {
   height: 100vh;
+}
+.custom-border {
+  border: solid;
+  margin: 3px;
+  border-color: var(--pastel);
 }
