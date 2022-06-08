@@ -15,7 +15,7 @@
 
 
 ## Collaborators
-
+Chris Okamuro 
 
 
 ## Resources

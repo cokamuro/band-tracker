@@ -2,17 +2,20 @@ img {
   height: 150px;
   display: inline;
 }
+
 .weather-icons {
   height: auto;
   display: inline;
 }
+
 .ticket-icons {
   height: 35px;
   display: inline;
 }
+
 .ticket-icons:hover {
-  height:55px;
-  display:inline;
+  height: 55px;
+  display: inline;
 }
 
 :root {
@@ -25,6 +28,7 @@ img {
   --light: #fff;
   --dark: #000;
 }
+
 .body {
   background-color: var(--dark);
 }
@@ -49,7 +53,7 @@ img {
 
 .row {
   font-size: 1.3rem;
-} 
+}
 
 .header {
   color: var(--dark)
@@ -59,8 +63,8 @@ img {
   background-color: var(--pink);
   color: var(--dark);
   font-family: 'Oswald', sans-serif;
-  position:sticky;
-  top:0;
+  position: sticky;
+  top: 0;
   width: 100%;
 }
 
@@ -85,6 +89,7 @@ img {
   background-color: var(--dark);
   color: var(--pink);
 }
+
 .custom-jumbotron {
   background-color: var(--pink);
   color: var(--dark);
@@ -100,16 +105,27 @@ img {
   background-color: var(--pink);
   color: var(--dark);
 }
-.custom-footer{
-    background-color: var(--pink);
-}
+
 .custom-footer {
   background-color: var(--pink);
-  font-family: 'Oswald', sans-serif; 
+}
+
+.custom-footer {
+  background-color: var(--pink);
+  font-family: 'Oswald', sans-serif;
   color: var(--dark);
   position: fixed;
   padding: 10px 10px 0px 10px;
   bottom: 0;
-  width:100%;
+  width: 100%;
 }
 
+.placeholder-layout {
+  color: var(--pastel);
+  margin-top: 30%;
+  font-size: 30px;
+}
+
+.placeholder-container {
+  height: 100vh;
+}
