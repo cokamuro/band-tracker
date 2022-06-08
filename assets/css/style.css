@@ -11,8 +11,9 @@ img {
   display: inline;
 }
 .ticket-icons:hover {
-  height:55px;
-  display:inline;
+  transform: rotate(23deg) scale(2);
+  transform-origin: center;
+  z-index: 1;
 }
 
 :root {
@@ -32,6 +33,7 @@ img {
   background-color: var(--dark);
   font-family: 'Libre Baskerville', serif;
 }
+
 
 .proto-artist-block {
   color: var(--pink);
