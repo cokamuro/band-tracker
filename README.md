@@ -25,11 +25,7 @@ Viewing your Artists/Bands
 ![Band Tracker - Full Interface](./assets/images/full-interface.png)
 
 ## Collaborators
-Chris Okamuro
-
-Sela Privette
-
-Victoria Malie
+Chris Okamuro, Sela Privette, Victoria Malie
 
 
 ## Resources
