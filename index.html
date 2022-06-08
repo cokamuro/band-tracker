@@ -13,14 +13,14 @@
         <link rel="icon" href="./assets/images/favicon.ico" type="image/any-icon">
     <title>Band Tracker</title>
 </head>
-<body>
+<body class="body">
     <!-- header block, equivalent of jumbotron -->
     <header class="p-2 custom-header">
         <div class="row">
-            <div class="col-sm-9 header">
+            <div class="col-sm-10 header">
                 <h1>Band Tracker</h1>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-2">
                 <button type="button" class="btn m-3 border-dark" data-bs-toggle="modal"
                     data-bs-target="#bandBtn">
                     Add a Band
@@ -56,8 +56,8 @@
         <section class="proto-artist-block">
             <section class="row text-center proto-artist-row">
             <section class="col-12 p-2 artist">
-                <a href=""><img scr="" class="rounded float-start"></a>
-                <h1 class="h2">ReplacedWithArtistName</h1>
+                <img scr="" class="rounded float-start">
+                <h1  class="h2 p-2 bg-dark bg-opacity-10 border border-light border-start-1"><a href="">ReplacedWithArtistName</a></h1>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button class="btn active m-3">Remove</button>
                 </div>
@@ -65,22 +65,22 @@
         </section>
     </section>
     <!--set css color variables-->
-    <div class="row border proto-header-row custom-info">
+    <div class="row proto-header-row custom-info custom-border">
         <div class="col-2 fw-bolder">Date & Time</div>
         <div class="col-2 fw-bolder">City</div>
         <div class="col-7 fw-bolder">Venue</div>
         <div class="col-1 fw-bolder">Tickets</div>
     </div>
     <!--set css color variables-->
-    <div class="row border proto-concert-row custom-row">
+    <div class="row proto-concert-row custom-row custom-border">
         <div class="col-2 fw-normal"></div>
         <div class="col-2 fw-normal"></div>
-        <div class="col-7 fw-normal"></div>
+        <div class="col-7 fw-normal"></div> 
         <div class="col-1 fw-normal"></div>
     </div>
     </section>
     <!-- footer block, equivalent of jumbotron -->
-    <footer class="p-3 custom-footer">
+    <footer class="p-3 text-center custom-footer"> Made by Chris, Sela, and Victoria 2022
     </footer>
     <!-- include jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
