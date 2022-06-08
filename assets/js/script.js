@@ -11,10 +11,13 @@ $(document).ready(function () {
         var delimBandString = localStorage.getItem("Bands");
         if (delimBandString != "" && delimBandString != null) {
             //set the "add-a-band"
+            $("#placeholder").addClass("visually-hidden")
             //turn the delimited string into a string array
             var bands = delimBandString.split("***")
             //first call to getBandInfo
             getBandInfo(bands, 0);
+        } else {
+            $("#placeholder").removeClass("visually-hidden")
         }
     }
 
